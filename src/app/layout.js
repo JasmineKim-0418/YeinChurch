@@ -22,7 +22,7 @@ const notoSerifKR = Noto_Serif_KR({
 export const metadata = {
   title: "예인교회 - 하나님의 사랑으로 세상을 품는 교회",
   description: "예인교회에 오신 것을 환영합니다. 함께 예배하고, 함께 성장하며, 함께 섬기는 공동체입니다.",
-  keywords: "교회, 예인교회, 예배, 설교, 기독교",
+  keywords: "구리 교회, 구리시 교회, 교문동 교회, 구리 예인교회, 말씀중심교회, 구리 교회 추천, 구리시 교회 추천, 예인교회, 예배, 설교, 기독교, 경기도 구리 교회",
 };
 
 export default function RootLayout({ children }) {
