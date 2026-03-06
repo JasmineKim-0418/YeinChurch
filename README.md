@@ -73,5 +73,5 @@ npm run dev
 ---
 
 <div align="center">
-  <p>© 2026 YeinChurch. Created with for God's Glory.</p>
+  <p>© 2026 YeinChurch. Created for God's Glory.</p>
 </div>
