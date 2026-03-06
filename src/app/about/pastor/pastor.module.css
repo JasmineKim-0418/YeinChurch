@@ -1,0 +1,209 @@
+/* 목사님소개 페이지 스타일 */
+
+.pastor {
+    background: var(--bg-primary);
+}
+
+.pastorGrid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 60px;
+    align-items: start;
+}
+
+.pastorImage {
+    position: sticky;
+    top: 120px;
+}
+
+.pastorPhoto {
+    width: 100%;
+    aspect-ratio: 3/4;
+    border-radius: 16px;
+    box-shadow: var(--shadow-lg);
+    object-fit: cover;
+}
+
+.imagePlaceholder {
+    aspect-ratio: 3/4;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    box-shadow: var(--shadow-lg);
+}
+
+.imagePlaceholder span {
+    font-size: 5rem;
+    margin-bottom: 16px;
+    opacity: 0.8;
+}
+
+.imagePlaceholder p {
+    font-size: 1rem;
+    opacity: 0.7;
+}
+
+.pastorInfo {
+    padding: 20px 0;
+}
+
+.name {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    color: var(--primary-dark);
+    margin-bottom: 8px;
+}
+
+.title {
+    font-size: 1.2rem;
+    color: var(--secondary);
+    font-weight: 500;
+    margin-bottom: 32px;
+}
+
+.bio,
+.greeting {
+    margin-bottom: 32px;
+}
+
+.bio h3,
+.greeting h3 {
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    color: var(--primary-dark);
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--secondary);
+    display: inline-block;
+}
+
+.bio ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.bio li {
+    position: relative;
+    padding-left: 20px;
+    color: var(--text-secondary);
+    font-size: 1.05rem;
+}
+
+.bio li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--secondary);
+    font-weight: bold;
+}
+
+.greeting p {
+    font-size: 1.1rem;
+    line-height: 1.9;
+    color: var(--text-secondary);
+    margin-bottom: 16px;
+}
+
+@media (max-width: 900px) {
+    .pastorGrid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .pastorImage {
+        position: static;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+
+    .name {
+        font-size: 2rem;
+        text-align: center;
+    }
+
+    .title {
+        text-align: center;
+    }
+}
+
+/* 동역자들 섹션 */
+.coworkers {
+    margin-top: 80px;
+    padding-top: 60px;
+    border-top: 1px solid #eee;
+}
+
+.coworkersTitle {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    color: var(--primary-dark);
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.coworkersGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+}
+
+.coworkerCard {
+    background: white;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+}
+
+.coworkerCard:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+}
+
+.coworkerName {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    color: var(--primary);
+    margin-bottom: 4px;
+}
+
+.coworkerRole {
+    font-size: 1rem;
+    color: var(--secondary);
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+.coworkerBio {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.coworkerBio li {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    position: relative;
+    padding-left: 15px;
+}
+
+.coworkerBio li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--primary-light);
+}
+
+@media (max-width: 600px) {
+    .coworkersGrid {
+        grid-template-columns: 1fr;
+    }
+}

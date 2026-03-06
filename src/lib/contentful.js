@@ -1,0 +1,342 @@
+import { createClient } from 'contentful';
+
+const client = createClient({
+    space: process.env.CONTENTFUL_SPACE_ID,
+    accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+    // Next.js fetch 캐시를 우회하여 항상 최신 데이터를 가져오도록 설정
+    fetch: (url, options) => fetch(url, { ...options, next: { revalidate: 0 } }),
+});
+
+// 설교 목록 가져오기
+export async function getSermons() {
+    try {
+        const response = await client.getEntries({
+            content_type: 'sermon',
+            order: ['-fields.date'],
+        });
+        return response.items.map((item) => ({
+            id: item.sys.id,
+            title: item.fields.title,
+            youtubeUrl: item.fields.youtubeUrl,
+            preacher: item.fields.preacher,
+            date: item.fields.date,
+        }));
+    } catch (error) {
+        console.error('Error fetching sermons:', error);
+        return [];
+    }
+}
+
+// 칼럼 목록 가져오기 (페이징 지원)
+export async function getColumns(page = 1, limit = 15) {
+    try {
+        const response = await client.getEntries({
+            content_type: 'column',
+            order: ['-fields.date'],
+            limit: limit,
+            skip: (page - 1) * limit,
+        });
+        return {
+            items: response.items.map((item) => ({
+                id: item.sys.id,
+                title: item.fields.title,
+                content: item.fields.content,
+                author: item.fields.author,
+                date: item.fields.date,
+            })),
+            total: response.total,
+        };
+    } catch (error) {
+        console.error('Error fetching columns:', error);
+        return { items: [], total: 0 };
+    }
+}
+
+// 개별 칼럼 가져오기
+export async function getColumnById(id) {
+    try {
+        const entry = await client.getEntry(id);
+        return {
+            id: entry.sys.id,
+            title: entry.fields.title,
+            content: entry.fields.content,
+            author: entry.fields.author,
+            date: entry.fields.date,
+        };
+    } catch (error) {
+        console.error(`Error fetching column ${id}:`, error);
+        return null;
+    }
+}
+
+// 새벽묵상 목록 가져오기 (페이징 지원)
+export async function getMeditations(page = 1, limit = 9) {
+    try {
+        const response = await client.getEntries({
+            content_type: 'qt',
+            order: ['-fields.date'],
+            limit: limit,
+            skip: (page - 1) * limit,
+        });
+        return {
+            items: response.items.map((item) => ({
+                id: String(item.sys.id),
+                title: String(item.fields.title || '제목 없음'),
+                content: item.fields.content,
+                author: typeof item.fields.author === 'string' ? item.fields.author : (item.fields.author?.fields?.name || item.fields.author2 || '예인교회'),
+                date: String(item.fields.date || ''),
+            })),
+            total: response.total,
+        };
+    } catch (error) {
+        console.error('Error fetching meditations:', error);
+        return { items: [], total: 0 };
+    }
+}
+
+// 개별 새벽묵상 가져오기
+export async function getMeditationById(id) {
+    try {
+        const entry = await client.getEntry(id);
+        return {
+            id: String(entry.sys.id),
+            title: String(entry.fields.title || '제목 없음'),
+            content: entry.fields.content,
+            author: typeof entry.fields.author === 'string' ? entry.fields.author : (entry.fields.author?.fields?.name || entry.fields.author2 || '예인교회'),
+            date: String(entry.fields.date || ''),
+        };
+    } catch (error) {
+        console.error(`Error fetching meditation ${id}:`, error);
+        return null;
+    }
+}
+
+// 주보 목록 가져오기 (페이징 지원)
+export async function getBulletins(page = 1, limit = 15) {
+    try {
+        const response = await client.getEntries({
+            content_type: 'bulletin',
+            order: ['-fields.date'],
+            limit: limit,
+            skip: (page - 1) * limit,
+        });
+        return {
+            items: response.items.map((item) => ({
+                id: item.sys.id,
+                title: item.fields.title,
+                date: item.fields.date,
+                fileUrl: item.fields.file?.fields?.file?.url ? `https:${item.fields.file.fields.file.url}` : null,
+            })),
+            total: response.total,
+        };
+    } catch (error) {
+        console.error('Error fetching bulletins:', error);
+        return { items: [], total: 0 };
+    }
+}
+
+// 개별 주보 가져오기
+export async function getBulletinById(id) {
+    try {
+        const entry = await client.getEntry(id);
+        return {
+            id: entry.sys.id,
+            title: entry.fields.title,
+            date: entry.fields.date,
+            fileUrl: entry.fields.file?.fields?.file?.url ? `https:${entry.fields.file.fields.file.url}` : null,
+            fileName: entry.fields.file?.fields?.file?.fileName || 'bulletin',
+        };
+    } catch (error) {
+        console.error(`Error fetching bulletin ${id}:`, error);
+        return null;
+    }
+}
+
+// 갤러리 목록 가져오기
+export async function getGalleryItems() {
+    try {
+        const response = await client.getEntries({
+            content_type: 'churchGallery',
+            order: ['-fields.date'],
+        });
+
+        // Mock Data providing fallback
+        if (!response.items || response.items.length === 0) {
+            return [
+                {
+                    id: '1',
+                    title: '2026 부활절 예배',
+                    thumbnail: '/main-banner-high-1.png',
+                    images: ['/main-banner-high-1.png'],
+                    description: '기쁨과 감사의 부활절 예배 현장입니다.',
+                    date: '2026-04-12',
+                },
+                {
+                    id: '2',
+                    title: '성가대 특별 찬양',
+                    thumbnail: '/choir_performance_1770166449704.png',
+                    images: ['/choir_performance_1770166449704.png'],
+                    description: '은혜로운 성가대의 찬양입니다.',
+                    date: '2026-03-20',
+                },
+                {
+                    id: '3',
+                    title: '여름 수련회',
+                    thumbnail: '/main-banner-2.png',
+                    images: ['/main-banner-2.png'],
+                    description: '자연 속에서 하나님을 만나는 시간',
+                    date: '2025-08-15',
+                },
+                {
+                    id: '4',
+                    title: '성탄 발표회',
+                    thumbnail: '/church-banner.png',
+                    images: ['/church-banner.png'],
+                    description: '아기 예수님의 탄생을 축하하며',
+                    date: '2025-12-25',
+                },
+                {
+                    id: '5',
+                    title: '새가족 환영회',
+                    thumbnail: '/main-banner-welcome.png',
+                    images: ['/main-banner-welcome.png'],
+                    description: '새로운 가족이 되신 여러분 환영합니다',
+                    date: '2026-01-10',
+                },
+                {
+                    id: '6',
+                    title: '담임목사님 설교',
+                    thumbnail: '/pastor-photo.png',
+                    images: ['/pastor-photo.png'],
+                    description: '매주 선포되는 생명의 말씀',
+                    date: '2026-02-01',
+                },
+            ];
+        }
+
+        return response.items.map((item) => {
+            // contentful에서 이미지가 하나('image')일 수도 있고, 여러 개('images')일 수도 있음
+            // 사용자가 'images'라는 알기 쉬운 이름으로 만들었지만 'One file'로 잘못 만들었을 경우도 대비
+            let imageUrls = [];
+
+            if (item.fields.images) {
+                if (Array.isArray(item.fields.images)) {
+                    // 다중 이미지 (Many files) 설정인 경우
+                    imageUrls = item.fields.images.map(img =>
+                        img.fields?.file?.url ? `https:${img.fields.file.url}` : null
+                    ).filter(Boolean);
+                } else {
+                    // 단일 이미지 (One file) 설정이지만 이름이 images인 경우
+                    const url = item.fields.images.fields?.file?.url ? `https:${item.fields.images.fields.file.url}` : null;
+                    if (url) imageUrls = [url];
+                }
+            }
+
+            // 2. 'image' 필드 확인 (images에서 못 찾았거나 추가로 있는 경우)
+            if (item.fields.image) {
+                if (Array.isArray(item.fields.image)) {
+                    // image 필드인데 배열인 경우 (Many files 설정) 
+                    // 사용자가 'image'라고 이름 짓고 'List' 타입을 선택한 경우입니다.
+                    imageUrls.push(...item.fields.image.map(img =>
+                        img.fields?.file?.url ? `https:${img.fields.file.url}` : null
+                    ).filter(Boolean));
+                } else if (item.fields.image.fields?.file?.url) {
+                    // image 필드이고 단일 객체인 경우 (One file 설정)
+                    imageUrls.push(`https:${item.fields.image.fields.file.url}`);
+                }
+            }
+
+            return {
+                id: item.sys.id,
+                title: item.fields.title,
+                thumbnail: imageUrls.length > 0 ? imageUrls[0] : null,
+                images: imageUrls,
+                description: item.fields.description,
+                date: item.fields.date,
+            };
+        });
+    } catch (error) {
+        console.error('Error fetching gallery items:', error);
+        // Return mock data on error as fallback
+        return [
+            {
+                id: '1',
+                title: '2026 부활절 예배',
+                thumbnail: '/main-banner-high-1.png',
+                images: ['/main-banner-high-1.png'],
+                description: '기쁨과 감사의 부활절 예배 현장입니다.',
+                date: '2026-04-12',
+            },
+            {
+                id: '2',
+                title: '성가대 특별 찬양',
+                thumbnail: '/choir_performance_1770166449704.png',
+                images: ['/choir_performance_1770166449704.png'],
+                description: '은혜로운 성가대의 찬양입니다.',
+                date: '2026-03-20',
+            },
+        ];
+    }
+}
+
+// 활성화된 팝업 가져오기
+export async function getActivePopup() {
+    try {
+        const response = await client.getEntries({
+            content_type: 'popup',
+            limit: 1,
+        });
+        if (response.items.length === 0) return null;
+        const item = response.items[0];
+        if (item.fields.isActive === false) return null;
+        return {
+            id: item.sys.id,
+            title: item.fields.title,
+            image: item.fields.image?.fields?.file?.url ? `https:${item.fields.image.fields.file.url}` : null,
+            link: item.fields.link || null,
+        };
+    } catch (error) {
+        console.error('Error fetching popup:', error);
+        return null;
+    }
+}
+
+// 성가대 찬양 가져오기
+export async function getChoirPraises() {
+    try {
+        const response = await client.getEntries({
+            content_type: 'choir',
+            order: ['-fields.date'],
+        });
+        return response.items.map((item) => ({
+            id: item.sys.id,
+            title: item.fields.title,
+            youtubeUrl: item.fields.youtubeUrl,
+            date: item.fields.date,
+        }));
+    } catch (error) {
+        console.error('Error fetching choir praises:', error);
+        return [];
+    }
+}
+
+// 찬양팀 영상 가져오기
+export async function getPraisePraises() {
+    try {
+        const response = await client.getEntries({
+            content_type: 'praise',
+            order: ['-fields.date'],
+        });
+        return response.items.map((item) => ({
+            id: item.sys.id,
+            title: item.fields.title,
+            youtubeUrl: item.fields.youtubeUrl,
+            date: item.fields.date,
+        }));
+    } catch (error) {
+        console.error('Error fetching praise praises:', error);
+        return [];
+    }
+}
+
+export default client;

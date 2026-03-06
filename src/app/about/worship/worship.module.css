@@ -1,0 +1,192 @@
+/* 예배안내 페이지 스타일 */
+
+.mainWorship {
+    background: white;
+}
+
+.worshipGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+}
+
+.worshipCard {
+    text-align: center;
+    padding: 40px 24px;
+    background: var(--bg-primary);
+    border-radius: 16px;
+    transition: var(--transition);
+}
+
+.worshipCard:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+}
+
+.worshipIcon {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.iconImg {
+    width: 56px;
+    height: 56px;
+    object-fit: contain;
+}
+
+.worshipCard h3 {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    color: var(--primary-dark);
+    margin-bottom: 16px;
+    word-break: keep-all;
+}
+
+.worshipTime {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--secondary);
+    margin-bottom: 8px;
+    white-space: pre-line;
+}
+
+.worshipLocation {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    margin-bottom: 12px;
+}
+
+.worshipDesc {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    word-break: keep-all;
+}
+
+/* 부서별 예배 */
+.departments {
+    background: var(--bg-secondary);
+}
+
+.deptTable {
+    max-width: 900px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+}
+
+.tableHeader {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1.2fr 1fr;
+    padding: 20px 24px;
+    background: var(--primary-dark);
+    color: white;
+    font-weight: 600;
+    text-align: center;
+}
+
+.tableRow {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1.2fr 1fr;
+    padding: 18px 24px;
+    border-bottom: 1px solid var(--bg-secondary);
+    transition: var(--transition);
+    white-space: pre-line;
+    text-align: center;
+    align-items: center;
+    word-break: keep-all;
+}
+
+.tableRow:last-child {
+    border-bottom: none;
+}
+
+.tableRow:hover {
+    background: var(--bg-primary);
+}
+
+.deptName {
+    font-weight: 600;
+    color: var(--primary);
+}
+
+/* 안내 사항 */
+.notice {
+    background: white;
+}
+
+.noticeBox {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px;
+    background: var(--bg-primary);
+    border-radius: 16px;
+    border-left: 4px solid var(--secondary);
+}
+
+.noticeBox h3 {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    color: var(--primary-dark);
+    margin-bottom: 20px;
+}
+
+.noticeBox ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.noticeBox li {
+    position: relative;
+    padding-left: 24px;
+    color: var(--text-secondary);
+    font-size: 1rem;
+    line-height: 1.6;
+    word-break: keep-all;
+}
+
+.noticeBox li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--secondary);
+    font-weight: bold;
+}
+
+@media (max-width: 900px) {
+    .worshipGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .tableHeader,
+    .tableRow {
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+    }
+
+    .tableHeader span:nth-child(3),
+    .tableHeader span:nth-child(4),
+    .tableRow span:nth-child(3),
+    .tableRow span:nth-child(4) {
+        display: none;
+    }
+}
+
+@media (max-width: 600px) {
+    .worshipGrid {
+        grid-template-columns: 1fr;
+        max-width: 350px;
+        margin: 0 auto;
+    }
+
+    .noticeBox {
+        padding: 24px;
+    }
+}

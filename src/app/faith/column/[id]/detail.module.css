@@ -1,0 +1,120 @@
+/* 칼럼 상세 페이지 스타일 */
+.article {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 16px;
+    padding: 50px;
+    box-shadow: var(--shadow-lg);
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #eee;
+}
+
+.title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 20px;
+    line-height: 1.4;
+}
+
+.meta {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+.author {
+    color: var(--primary);
+    font-weight: 500;
+}
+
+.date {
+    color: #999;
+}
+
+.content {
+    font-size: 1.1rem;
+    line-height: 1.9;
+    color: var(--text-primary);
+}
+
+.content p {
+    margin-bottom: 1.5rem;
+}
+
+.content h2,
+.content h3 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    color: var(--primary);
+}
+
+.content ul,
+.content ol {
+    margin-bottom: 1.5rem;
+    padding-left: 1.5rem;
+}
+
+.content li {
+    margin-bottom: 0.5rem;
+}
+
+.content blockquote {
+    border-left: 4px solid var(--accent);
+    padding-left: 20px;
+    margin: 2rem 0;
+    font-style: italic;
+    color: var(--text-secondary);
+}
+
+.footer {
+    margin-top: 50px;
+    padding-top: 30px;
+    border-top: 1px solid #eee;
+    text-align: center;
+}
+
+.backLink {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--primary);
+    font-weight: 500;
+    text-decoration: none;
+    padding: 12px 24px;
+    border: 2px solid var(--primary);
+    border-radius: 8px;
+    transition: var(--transition);
+}
+
+.backLink:hover {
+    background: var(--primary);
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .article {
+        padding: 30px 20px;
+    }
+
+    .title {
+        font-size: 1.5rem;
+    }
+
+    .meta {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .content {
+        font-size: 1rem;
+    }
+}

@@ -1,0 +1,280 @@
+/* 찬양팀 페이지 스타일 */
+
+.intro {
+    background: white;
+}
+
+.introContent {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.imagePlaceholder {
+    aspect-ratio: 4/3;
+    background: linear-gradient(135deg, var(--secondary) 0%, #b8860b 100%);
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    box-shadow: var(--shadow-lg);
+}
+
+.imagePlaceholder span {
+    font-size: 5rem;
+    margin-bottom: 16px;
+}
+
+.imagePlaceholder p {
+    font-size: 1rem;
+    opacity: 0.7;
+}
+
+.introText h2 {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    color: var(--primary-dark);
+    margin-bottom: 20px;
+}
+
+.introText p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    margin-bottom: 16px;
+}
+
+/* 파트 */
+.parts {
+    background: var(--bg-primary);
+}
+
+.partsGrid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 20px;
+}
+
+.partCard {
+    text-align: center;
+    padding: 32px 16px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+}
+
+.partCard:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+}
+
+.partIcon {
+    font-size: 2.5rem;
+    margin-bottom: 12px;
+    display: block;
+}
+
+.partCard h3 {
+    font-size: 1.1rem;
+    color: var(--primary-dark);
+    margin-bottom: 8px;
+}
+
+.partCard p {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+/* 일정 */
+.schedule {
+    background: white;
+}
+
+.scheduleBox {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 48px;
+    background: var(--bg-secondary);
+    border-radius: 16px;
+    text-align: center;
+}
+
+.scheduleBox h3 {
+    font-family: var(--font-heading);
+    font-size: 1.6rem;
+    color: var(--primary-dark);
+    margin-bottom: 32px;
+}
+
+.scheduleGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 32px;
+}
+
+.scheduleItem {
+    padding: 24px;
+    background: white;
+    border-radius: 12px;
+}
+
+.scheduleItem strong {
+    display: block;
+    color: var(--primary);
+    margin-bottom: 8px;
+}
+
+.scheduleItem p {
+    color: var(--text-secondary);
+    font-size: 1rem;
+}
+
+.joinNote {
+    color: var(--text-secondary);
+    font-size: 1rem;
+}
+
+@media (max-width: 900px) {
+    .introContent {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .partsGrid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .scheduleGrid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    .partsGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .scheduleBox {
+        padding: 32px 24px;
+    }
+}
+
+/* 추가된 비디오 그리드 스타일 */
+.videoSection {
+    background: var(--bg-secondary);
+}
+
+.sermonGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    margin-bottom: 40px;
+}
+
+.sermonCard {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+    border: 1px solid #f0f0f0;
+    cursor: pointer;
+}
+
+.sermonCard:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+}
+
+.sermonThumbnail {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    background: #eee;
+    overflow: hidden;
+}
+
+.thumbnailImg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.playOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: var(--transition);
+}
+
+.sermonCard:hover .playOverlay {
+    opacity: 1;
+}
+
+.playIcon {
+    width: 50px;
+    height: 50px;
+    background: var(--secondary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.sermonInfo {
+    padding: 20px;
+}
+
+.sermonDate {
+    display: block;
+    font-size: 0.85rem;
+    color: #999;
+    margin-bottom: 8px;
+}
+
+.sermonTitle {
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+    line-height: 1.4;
+    height: 2.8em;
+    overflow: hidden;
+    display: -webkit-box;
+    line-clamp: 2;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.sermonTeam {
+    font-size: 0.9rem;
+    color: var(--primary);
+    font-weight: 500;
+}
+
+.sermonMore {
+    text-align: center;
+}
+
+@media (max-width: 900px) {
+    .sermonGrid {
+        grid-template-columns: 1fr;
+        max-width: 450px;
+        margin: 0 auto;
+    }
+}

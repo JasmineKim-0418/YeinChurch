@@ -1,0 +1,97 @@
+/* 상담센터 페이지 스타일 */
+
+.bannerWrapper {
+    width: 100%;
+    position: relative;
+    line-height: 0;
+}
+
+.bannerImage {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.intro {
+    background: white;
+    text-align: center;
+    padding-top: 40px !important;
+}
+
+.introContent {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.introContent h2 {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    color: var(--primary-dark);
+    margin-bottom: 20px;
+}
+
+.introContent p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--text-secondary);
+}
+
+.services {
+    background: var(--bg-secondary);
+}
+
+
+
+.categoryGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    max-width: 600px;
+    margin: 40px auto;
+}
+
+.categoryCard {
+    background: white;
+    padding: 30px 20px;
+    border-radius: 16px;
+    box-shadow: var(--shadow-sm);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--primary-dark);
+    text-align: center;
+    transition: var(--transition);
+    border: 1px solid #f0f0f0;
+}
+
+.categoryCard:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--secondary);
+}
+
+.telInfo {
+    margin-top: 60px;
+    font-size: 1.5rem;
+    color: var(--primary-dark);
+    font-weight: 700;
+    text-align: center;
+    padding: 30px;
+    border-top: 2px dashed #eee;
+    background: #fdfdfd;
+    white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+    .categoryGrid {
+        grid-template-columns: 1fr;
+        padding: 0 20px;
+    }
+
+    .categoryCard {
+        font-size: 1.1rem;
+    }
+
+    .telInfo {
+        font-size: 1.2rem;
+    }
+}

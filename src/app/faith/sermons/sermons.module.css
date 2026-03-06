@@ -1,0 +1,246 @@
+/* 설교 페이지 스타일 */
+
+/* 최신 설교 */
+.featured {
+    background: #fdfdfd;
+}
+
+.errorContainer {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f0f0f0;
+    color: #666;
+    text-align: center;
+    padding: 20px;
+}
+
+
+.featuredContent {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 48px;
+    align-items: center;
+}
+
+.featuredVideo {
+    position: relative;
+    aspect-ratio: 16/9;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+}
+
+.featuredVideo iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.featuredBadge {
+    display: inline-block;
+    padding: 6px 16px;
+    background: var(--secondary);
+    color: white;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-radius: 20px;
+    margin-bottom: 16px;
+}
+
+.featuredTitle {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    color: var(--primary-dark);
+    margin-bottom: 16px;
+    line-height: 1.4;
+}
+
+.featuredMeta {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    margin-bottom: 12px;
+}
+
+.featuredScripture {
+    font-size: 1rem;
+    color: var(--primary);
+    font-weight: 500;
+}
+
+/* 설교 목록 (테이블 스타일) */
+.list {
+    background: #faf9f6;
+}
+
+.tableContainer {
+    background: white;
+    border-radius: 8px;
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.listHeader {
+    display: flex;
+    align-items: center;
+    background: #fdfdfd;
+    padding: 16px 24px;
+    border-bottom: 1px solid #eee;
+    font-weight: 600;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+.listRow {
+    display: flex;
+    align-items: center;
+    padding: 20px 24px;
+    border-bottom: 1px solid #f5f5f5;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.listRow:last-child {
+    border-bottom: none;
+}
+
+.listRow:hover {
+    background-color: #f8f9fa;
+}
+
+.activeRow {
+    background-color: #f0f7f1 !important;
+}
+
+.activeRow .colTitle {
+    color: var(--primary);
+    font-weight: 600;
+}
+
+/* 컬럼 스타일 */
+.colNum {
+    width: 60px;
+    text-align: center;
+    color: #999;
+    font-size: 0.9rem;
+}
+
+.colTitle {
+    flex: 1;
+    padding: 0 24px;
+    font-size: 1.05rem;
+    color: var(--text-primary);
+    font-weight: 500;
+    word-break: keep-all;
+}
+
+.colPreacher {
+    width: 140px;
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+.colDate {
+    width: 120px;
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+/* 반응형 */
+@media (max-width: 900px) {
+    .featuredContent {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+}
+
+@media (max-width: 768px) {
+    .listHeader {
+        display: none;
+        /* 모바일에서는 헤더 숨김 */
+    }
+
+    .listRow {
+        flex-wrap: wrap;
+        padding: 16px;
+        position: relative;
+    }
+
+    .colNum {
+        display: none;
+    }
+
+    .colTitle {
+        text-align: left;
+        padding: 0;
+        width: 100%;
+        margin-bottom: 8px;
+        font-size: 1.1rem;
+    }
+
+    .colPreacher,
+    .colDate {
+        width: auto;
+        font-size: 0.85rem;
+        margin-right: 12px;
+        text-align: left;
+    }
+}
+
+@media (max-width: 600px) {
+    .featuredTitle {
+        font-size: 1.4rem;
+    }
+}
+
+/* 페이지네이션 */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-top: 40px;
+    padding: 20px 0;
+}
+
+.pageButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 40px;
+    height: 40px;
+    padding: 0 12px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    background: white;
+    color: var(--text-primary);
+    font-size: 0.95rem;
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+.pageButton:hover:not(.disabled) {
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+.active {
+    background: var(--primary) !important;
+    color: white !important;
+    border-color: var(--primary) !important;
+}
+
+.disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    pointer-events: none;
+}

@@ -1,0 +1,202 @@
+/* 오시는길 페이지 스타일 */
+
+.location {
+    background: var(--bg-primary);
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 40px;
+}
+
+/* 지도 영역 */
+.mapArea {
+    position: sticky;
+    top: 100px;
+}
+
+.mapContainer {
+    width: 100%;
+    height: 400px;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+}
+
+.mapContainer iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.mapButtons {
+    display: flex;
+    gap: 12px;
+    margin-top: 16px;
+}
+
+.naverBtn,
+.kakaoBtn {
+    flex: 1;
+    padding: 14px 20px;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.naverBtn {
+    background: #03C75A;
+    color: white;
+}
+
+.naverBtn:hover {
+    background: #02a84d;
+    color: white;
+}
+
+.kakaoBtn {
+    background: #FEE500;
+    color: #191919;
+}
+
+.kakaoBtn:hover {
+    background: #e6cf00;
+}
+
+.distance {
+    font-size: 0.9rem !important;
+    color: var(--primary) !important;
+    margin-top: 4px;
+}
+
+/* 정보 영역 */
+.infoArea {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.infoCard {
+    background: white;
+    padding: 28px;
+    border-radius: 12px;
+    box-shadow: var(--shadow-sm);
+}
+
+.infoCard h2 {
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    color: var(--primary-dark);
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--bg-secondary);
+}
+
+.infoItem {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    margin-bottom: 16px;
+}
+
+.infoItem:last-child {
+    margin-bottom: 0;
+}
+
+.icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.infoItem p {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.address {
+    font-size: 1.1rem !important;
+    color: var(--text-primary) !important;
+    font-weight: 500;
+}
+
+.zipcode {
+    font-size: 0.9rem !important;
+    margin-top: 4px;
+}
+
+.parkingNote {
+    font-size: 0.9rem !important;
+    color: var(--text-secondary);
+    margin-top: 4px;
+}
+
+/* 대중교통 */
+.transport {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.transportItem {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+}
+
+.transportIcon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.transportItem strong {
+    display: block;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+}
+
+.transportItem p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.busNumbers {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 8px;
+    align-items: center;
+}
+
+.busBlue,
+.busGreen {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: white;
+}
+
+.busBlue {
+    background: #3b82f6;
+}
+
+.busGreen {
+    background: #22c55e;
+}
+
+@media (max-width: 900px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .mapArea {
+        position: static;
+    }
+}

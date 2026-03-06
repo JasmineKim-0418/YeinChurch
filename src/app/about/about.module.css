@@ -1,0 +1,198 @@
+/* 교회소개 페이지 스타일 */
+
+/* 비전 섹션 */
+.vision {
+    background: white;
+    text-align: center;
+}
+
+.visionTitle {
+    font-family: var(--font-heading);
+    font-size: 2.2rem;
+    color: var(--primary-dark);
+    margin-bottom: 24px;
+}
+
+.visionVerse {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    font-style: italic;
+    color: var(--text-secondary);
+    max-width: 700px;
+    margin: 0 auto 48px;
+    line-height: 1.8;
+}
+
+.visionCards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    /* Reduced gap to fit 4 cards better */
+}
+
+.visionCard {
+    padding: 30px 16px;
+    /* Reduced padding */
+    background: var(--bg-primary);
+    border-radius: 12px;
+    transition: var(--transition);
+}
+
+.visionCard:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+}
+
+.visionIcon {
+    font-size: 2.5rem;
+    margin-bottom: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.iconImg {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+}
+
+.visionCard h3 {
+    font-size: 1.15rem;
+    /* Smaller title */
+    color: var(--primary-dark);
+    margin-bottom: 12px;
+    word-break: keep-all;
+}
+
+.visionCard p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    /* Smaller text */
+    word-break: keep-all;
+}
+
+/* 교회 소개 */
+.about {
+    background: var(--bg-secondary);
+}
+
+.aboutGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.aboutImage {
+    position: relative;
+}
+
+.imagePlaceholder {
+    aspect-ratio: 4/3;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.imagePlaceholder span {
+    font-size: 4rem;
+    margin-bottom: 16px;
+    color: var(--secondary);
+}
+
+.imagePlaceholder p {
+    font-size: 1rem;
+    opacity: 0.7;
+}
+
+.aboutTitle {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    color: var(--primary-dark);
+    margin-bottom: 24px;
+}
+
+.aboutText {
+    font-size: 1.05rem;
+    line-height: 1.9;
+    color: var(--text-secondary);
+    margin-bottom: 16px;
+    word-break: keep-all;
+    white-space: pre-line;
+}
+
+/* 핵심 가치 */
+.values {
+    background: white;
+}
+
+.valuesGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+}
+
+.valueItem {
+    text-align: center;
+    padding: 32px 20px;
+}
+
+.valueNumber {
+    display: inline-block;
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--secondary);
+    margin-bottom: 16px;
+}
+
+.valueItem h3 {
+    font-size: 1.2rem;
+    color: var(--primary-dark);
+    margin-bottom: 12px;
+}
+
+.valueItem p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* 반응형 */
+@media (max-width: 900px) {
+    .visionCards {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    .aboutGrid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .valuesGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .valuesGrid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.pcBreak {
+    display: block;
+}
+
+@media (max-width: 900px) {
+    .pcBreak {
+        display: none;
+    }
+}
