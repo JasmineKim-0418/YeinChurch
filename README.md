@@ -1,4 +1,4 @@
-# ⛪ 예인교회 공식 홈페이지 (Yein Church Official Project)
+# 예인교회 공식 홈페이지 (Yein Church Official Project)
 
 <div align="center">
   <img src="public/logo-v2.png" alt="Yein Church Logo" width="300" />
