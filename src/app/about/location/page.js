@@ -4,6 +4,8 @@ import Link from 'next/link';
 export const metadata = {
     title: '오시는길 - 구리 예인교회',
     description: '예인교회 오시는 길 안내입니다. 경기 구리시 경춘로175번길 38',
+    keywords: '구리 예인교회 오시는길, 구리시 교회 위치, 교문동 교회 추천, 구리역 주변 교회, 한양대구리병원 근처 교회',
+
 };
 
 export default function LocationPage() {

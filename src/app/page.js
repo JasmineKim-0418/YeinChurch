@@ -17,9 +17,48 @@ export const revalidate = 60;
 export default async function Home() {
   const sermons = await getSermons();
   const latestSermons = sermons.slice(0, 3);
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'LocalBusiness',
+    'name': '구리 예인교회',
+    'image': 'https://yeinchurch.org/yeinchurch.png',
+    '@id': 'https://yeinchurch.org',
+    'url': 'https://yeinchurch.org',
+    'telephone': '031-554-7658',
+    'address': {
+      '@type': 'PostalAddress',
+      'streetAddress': '경춘로175번길 38',
+      'addressLocality': '구리시',
+      'addressRegion': '경기도',
+      'postalCode': '11921',
+      'addressCountry': 'KR'
+    },
+    'geo': {
+      '@type': 'GeoCoordinates',
+      'latitude': 37.6015694,
+      'longitude': 127.1332886
+    },
+    'openingHoursSpecification': [
+      {
+        '@type': 'OpeningHoursSpecification',
+        'dayOfWeek': 'Sunday',
+        'opens': '07:30',
+        'closes': '21:00'
+      }
+    ]
+  };
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      {/* SEO를 위한 헤더 */}
+      <h1 style={{ position: 'absolute', width: '1px', height: '1px', padding: '0', margin: '-1px', overflow: 'hidden', clip: 'rect(0,0,0,0)', border: '0' }}>
+        구리 예인교회 - 구리시 교문동 추천 교회 (대한예수교장로회 합동)
+      </h1>
+
       {/* 히어로 슬라이더 */}
       <MainSlider />
 
@@ -29,16 +68,15 @@ export default async function Home() {
           <div className={styles.introGrid}>
             <div className={styles.introContent}>
               <h2 className={styles.introTitle}>
-                함께 예배하고
+                구리 예인교회에
                 <br />
-                함께 성장하는 공동체
+                오신 것을 환영합니다
               </h2>
               <p className={styles.introDesc}>
-                예인교회는 개혁주의 신학에 기반한 교단인 대한예수교장로회(합동) 평양노회에
-                소속되어 있습니다. 합동 교단과 함께하는 학교는 <br />총신대학교(사당동)입니다.
+                예인교회는 경기도 구리시 교문동에 위치한 개혁주의 신학 기반의 공동체입니다. (대한예수교장로회 합동 평양노회) 합동 교단과 함께하는 학교는 총신대학교(사당동)입니다. 구리 사시는 모든 분들을 환영하며 함께 예배하고 성장하기를 소망합니다.
               </p>
               <Link href="/about" className="btn btn-primary">
-                더 알아보기
+                교회 소개 보기
               </Link>
             </div>
             <div className={styles.introImage}>
