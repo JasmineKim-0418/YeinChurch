@@ -14,3 +14,4 @@ export default function robots() {
     }
 }
 // Trigger build after Git reconnect
+// Final build trigger after confirmed Git connection
