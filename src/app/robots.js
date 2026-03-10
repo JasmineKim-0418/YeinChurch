@@ -13,3 +13,4 @@ export default function robots() {
         sitemap: 'https://www.yeinchurch.kr/sitemap.xml',
     }
 }
+// Trigger build after Git reconnect
