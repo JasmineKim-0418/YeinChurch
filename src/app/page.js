@@ -21,9 +21,9 @@ export default async function Home() {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
     'name': '구리 예인교회',
-    'image': 'https://yeinchurch.org/yeinchurch.png',
-    '@id': 'https://yeinchurch.org',
-    'url': 'https://yeinchurch.org',
+    'image': 'https://www.yeinchurch.kr/yeinchurch.png',
+    '@id': 'https://www.yeinchurch.kr',
+    'url': 'https://www.yeinchurch.kr',
     'telephone': '031-554-7658',
     'address': {
       '@type': 'PostalAddress',
