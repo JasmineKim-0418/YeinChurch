@@ -26,7 +26,7 @@ export const metadata = {
   openGraph: {
     title: "구리 예인교회 - 구리시 교문동 추천 교회",
     description: "구리시 교문동에 위치한 예인교회에 오신 것을 환영합니다. 하나님의 사랑으로 세상을 품는 교회입니다.",
-    url: "https://yeinchurch.org", // URL은 실제 도메인으로 확인 필요
+    url: "https://www.yeinchurch.kr", // 실제 도메인으로 업데이트
     siteName: "구리 예인교회",
     locale: "ko_KR",
     type: "website",
@@ -55,6 +55,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="ko">
+      <head>
+        {/* 네이버 사이트 소유 확인 */}
+        <meta name="naver-site-verification" content="dd3626409d1994b3c1836c35c182c8d404167000" />
+      </head>
       <body className={`${notoSansKR.variable} ${notoSerifKR.variable}`}>
         <Header />
         <main style={{ paddingTop: 'var(--header-height)' }}>

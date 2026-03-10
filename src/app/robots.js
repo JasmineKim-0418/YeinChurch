@@ -5,6 +5,6 @@ export default function robots() {
             allow: '/',
             disallow: '/private/',
         },
-        sitemap: 'https://yeinchurch.org/sitemap.xml',
+        sitemap: 'https://www.yeinchurch.kr/sitemap.xml',
     }
 }

@@ -1,5 +1,5 @@
 export default function sitemap() {
-    const baseUrl = 'https://yeinchurch.org'; // Replace with actual domain
+    const baseUrl = 'https://www.yeinchurch.kr'; // 실제 도메인으로 업데이트
     const routes = [
         '',
         '/about',
