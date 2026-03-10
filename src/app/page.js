@@ -56,7 +56,7 @@ export default async function Home() {
       />
       {/* SEO를 위한 헤더 */}
       <h1 style={{ position: 'absolute', width: '1px', height: '1px', padding: '0', margin: '-1px', overflow: 'hidden', clip: 'rect(0,0,0,0)', border: '0' }}>
-        구리 예인교회 - 구리시 교문동 추천 교회 (대한예수교장로회 합동)
+        구리 예인교회 (대한예수교장로회 합동) - 경기도 구리시 교문동 교회
       </h1>
 
       {/* 히어로 슬라이더 */}
