@@ -45,6 +45,11 @@ export const metadata = {
     description: "구리시 교문동에 위치한 예인교회에 오신 것을 환영합니다.",
     images: ["/yeinchurch.png"],
   },
+  verification: {
+    other: {
+      'naver-site-verification': 'dd3626409d1994b3c1836c35c182c8d404167000',
+    },
+  },
 };
 
 export default function RootLayout({ children }) {
