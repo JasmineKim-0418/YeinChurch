@@ -16,9 +16,15 @@ const banners = [
         mobileImage: '/main-banner-mobile-5.png',
         alt: '2026년 표어: 말씀을 읽고, 묵상하고, 살아내자',
     },
+    {
+        id: 3,
+        image: '/2026_pray_desk.png',
+        mobileImage: '/2026_pray_mobile.png',
+        alt: '2026 고난 주간 특별 새벽기도회',
+    },
 
     // {
-    //     id: 3,
+    //     id: 4,
     //     image: '/main-banner-high-4.png',
     //     mobileImage: '/main-banner-mobile-4.png',
     //     alt: '2026 엘러브 청년부 동계 수련회 BUILD UP!',
