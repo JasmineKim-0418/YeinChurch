@@ -152,15 +152,14 @@
     gap: 30px;
 }
 
-.mainImageContainer {
-    position: relative;
-    width: 100%;
+.imageFeed {
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
 }
 
-.imageBox {
+.feedImageBox {
     width: 100%;
     border-radius: 8px;
     overflow: hidden;
@@ -170,45 +169,8 @@
 .fullImage {
     width: 100%;
     height: auto;
-    max-height: 500px;
     object-fit: contain;
     display: block;
-}
-
-.slideBtn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(255, 255, 255, 0.8);
-    border: none;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    z-index: 5;
-    transition: all 0.2s;
-}
-
-.slideBtn:hover:not(:disabled) {
-    background: white;
-    transform: translateY(-50%) scale(1.1);
-}
-
-.slideBtn:disabled {
-    opacity: 0.3;
-    cursor: not-allowed;
-}
-
-.prevBtn {
-    left: -25px;
-}
-
-.nextBtn {
-    right: -25px;
 }
 
 .pagination {

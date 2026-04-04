@@ -98,33 +98,27 @@ export default function GalleryClient({ items }) {
                             </header>
 
                             <div className={styles.modalBody}>
-                                <div className={styles.mainImageContainer}>
-                                    {selectedItem.images && selectedItem.images.length > 1 && (
-                                        <button className={`${styles.slideBtn} ${styles.prevBtn}`} onClick={prevImage} disabled={currentImageIndex === 0}>
-                                            &#10094;
-                                        </button>
-                                    )}
-
-                                    <div className={styles.imageBox}>
-                                        <img
-                                            src={selectedItem.images?.[currentImageIndex] || selectedItem.thumbnail}
-                                            alt={selectedItem.title}
-                                            className={styles.fullImage}
-                                        />
-                                    </div>
-
-                                    {selectedItem.images && selectedItem.images.length > 1 && (
-                                        <button className={`${styles.slideBtn} ${styles.nextBtn}`} onClick={nextImage} disabled={currentImageIndex === selectedItem.images.length - 1}>
-                                            &#10095;
-                                        </button>
+                                <div className={styles.imageFeed}>
+                                    {selectedItem.images && selectedItem.images.length > 0 ? (
+                                        selectedItem.images.map((img, idx) => (
+                                            <div key={idx} className={styles.feedImageBox}>
+                                                <img
+                                                    src={img}
+                                                    alt={`${selectedItem.title} - ${idx + 1}`}
+                                                    className={styles.fullImage}
+                                                />
+                                            </div>
+                                        ))
+                                    ) : (
+                                        <div className={styles.feedImageBox}>
+                                            <img
+                                                src={selectedItem.thumbnail}
+                                                alt={selectedItem.title}
+                                                className={styles.fullImage}
+                                            />
+                                        </div>
                                     )}
                                 </div>
-
-                                {selectedItem.images && selectedItem.images.length > 1 && (
-                                    <div className={styles.pagination}>
-                                        {currentImageIndex + 1} / {selectedItem.images.length}
-                                    </div>
-                                )}
 
                                 <div className={styles.contentArea}>
                                     <p className={styles.fullDescription}>
