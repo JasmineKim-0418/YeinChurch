@@ -285,7 +285,7 @@ export async function getActivePopups() {
         const response = await client.getEntries({
             content_type: 'popup',
             'fields.isActive': true,
-            order: ['-sys.updatedAt'],
+            order: ['sys.createdAt'], // 작성된 순서대로 (오래된 게 먼저 = 왼쪽)
             // limit을 제거하여 활성화된 모든 팝업을 가져옵니다.
         });
 

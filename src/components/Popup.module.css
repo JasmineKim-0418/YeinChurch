@@ -1,15 +1,14 @@
-/* 팝업들이 담기는 컨테이너 - 가로 정렬로 변경 */
+/* 팝업들이 담기는 컨테이너 - 왼쪽 정렬 */
 .popupsContainer {
     position: fixed;
-    top: 5vh;
-    left: 50%;
-    transform: translateX(-50%);
+    top: 15vh; /* 헤더보다 살짝 아래에서 시작 */
+    left: 20px;
     z-index: 9999;
     display: flex;
     flex-direction: row; /* 가로로 나열 */
-    justify-content: center;
+    justify-content: flex-start;
     align-items: flex-start;
-    gap: 30px;
+    gap: 20px;
     pointer-events: none;
     width: auto;
     max-width: 95vw;
