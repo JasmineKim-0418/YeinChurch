@@ -72,18 +72,20 @@
 .image {
     width: 100%;
     height: auto;
+    max-height: 480px; /* 너무 길어지지 않게 제한 */
+    object-fit: cover;
     display: block;
 }
 
 .textContent {
-    padding: 30px;
+    padding: 20px 30px; /* 기존 30px에서 20px로 줄임 */
     text-align: center;
 }
 
 .textContent h2 {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     color: #333;
-    margin-bottom: 12px;
+    margin-bottom: 8px;
 }
 
 .footer {
@@ -95,7 +97,7 @@
 .hideBtn,
 .confirmBtn {
     flex: 1;
-    padding: 12px;
+    padding: 10px; /* 기존 12px에서 10px로 줄여서 세로폭 압축 */
     border: none;
     background: white;
     font-size: 0.85rem;
