@@ -72,9 +72,6 @@
 .image {
     width: 100%;
     height: auto;
-    max-height: 520px; /* 잘리지 않는 선에서 최대 높이 조절 */
-    object-fit: contain; /* 사진이 절대 잘리지 않도록 설정 */
-    background-color: #fff; /* 사진 여백이 생길 경우 흰색으로 채움 */
     display: block;
 }
 
