@@ -284,11 +284,14 @@ export async function getActivePopup() {
     try {
         const response = await client.getEntries({
             content_type: 'popup',
+            'fields.isActive': true, // 활성화된 것만 쿼리 단계에서 필터링
+            order: ['-sys.updatedAt'], // 가장 최근에 수정한 순서대로
             limit: 1,
         });
+
         if (response.items.length === 0) return null;
+        
         const item = response.items[0];
-        if (item.fields.isActive === false) return null;
         return {
             id: item.sys.id,
             title: item.fields.title,
