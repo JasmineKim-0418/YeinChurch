@@ -42,39 +42,37 @@ export default function Popup({ popup }) {
     };
 
     return (
-        <div className={styles.overlay}>
-            <div className={styles.popup}>
-                <button className={styles.closeBtn} onClick={handleClose}>
-                    ✕
+        <div className={styles.popup}>
+            <button className={styles.closeBtn} onClick={handleClose}>
+                ✕
+            </button>
+
+            <div
+                className={styles.content}
+                onClick={handleClick}
+                style={{ cursor: popup.link ? 'pointer' : 'default' }}
+            >
+                {popup.image && (
+                    <img
+                        src={popup.image}
+                        alt={popup.title}
+                        className={styles.image}
+                    />
+                )}
+                {!popup.image && popup.title && (
+                    <div className={styles.textContent}>
+                        <h2>{popup.title}</h2>
+                    </div>
+                )}
+            </div>
+
+            <div className={styles.footer}>
+                <button className={styles.hideBtn} onClick={handleHideToday}>
+                    오늘 하루 보지 않기
                 </button>
-
-                <div
-                    className={styles.content}
-                    onClick={handleClick}
-                    style={{ cursor: popup.link ? 'pointer' : 'default' }}
-                >
-                    {popup.image && (
-                        <img
-                            src={popup.image}
-                            alt={popup.title}
-                            className={styles.image}
-                        />
-                    )}
-                    {!popup.image && popup.title && (
-                        <div className={styles.textContent}>
-                            <h2>{popup.title}</h2>
-                        </div>
-                    )}
-                </div>
-
-                <div className={styles.footer}>
-                    <button className={styles.hideBtn} onClick={handleHideToday}>
-                        오늘 하루 보지 않기
-                    </button>
-                    <button className={styles.confirmBtn} onClick={handleClose}>
-                        닫기
-                    </button>
-                </div>
+                <button className={styles.confirmBtn} onClick={handleClose}>
+                    닫기
+                </button>
             </div>
         </div>
     );

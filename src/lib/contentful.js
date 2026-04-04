@@ -279,28 +279,27 @@ export async function getGalleryItems() {
     }
 }
 
-// 활성화된 팝업 가져오기
-export async function getActivePopup() {
+// 활성화된 모든 팝업 가져오기
+export async function getActivePopups() {
     try {
         const response = await client.getEntries({
             content_type: 'popup',
-            'fields.isActive': true, // 활성화된 것만 쿼리 단계에서 필터링
-            order: ['-sys.updatedAt'], // 가장 최근에 수정한 순서대로
-            limit: 1,
+            'fields.isActive': true,
+            order: ['-sys.updatedAt'],
+            // limit을 제거하여 활성화된 모든 팝업을 가져옵니다.
         });
 
-        if (response.items.length === 0) return null;
+        if (response.items.length === 0) return [];
         
-        const item = response.items[0];
-        return {
+        return response.items.map(item => ({
             id: item.sys.id,
             title: item.fields.title,
             image: item.fields.image?.fields?.file?.url ? `https:${item.fields.image.fields.file.url}` : null,
             link: item.fields.link || null,
-        };
+        }));
     } catch (error) {
-        console.error('Error fetching popup:', error);
-        return null;
+        console.error('Error fetching popups:', error);
+        return [];
     }
 }
 
