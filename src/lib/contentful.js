@@ -339,4 +339,102 @@ export async function getPraisePraises() {
     }
 }
 
+// 공지사항 목록 가져오기 (페이징 지원)
+export async function getNotices(page = 1, limit = 15) {
+    try {
+        const response = await client.getEntries({
+            content_type: 'notice',
+            order: ['-fields.date'],
+            limit: limit,
+            skip: (page - 1) * limit,
+        });
+
+        // Mock data if no entries found
+        if (response.items.length === 0) {
+            return {
+                items: [
+                    {
+                        id: 'mock-1',
+                        title: '구리 예인교회 홈페이지 새 단장 안내',
+                        content: '성도 여러분의 신앙생활에 도움을 드리고자 홈페이지를 새롭게 단장하였습니다. 많은 이용 바랍니다.',
+                        author: '관리자',
+                        date: '2026-03-01',
+                    },
+                    {
+                        id: 'mock-2',
+                        title: '금주 예배 안내',
+                        content: '이번 주 주일 예배는 평소와 동일하게 진행됩니다. 기도로 준비해 주시기 바랍니다.',
+                        author: '예인교회',
+                        date: '2026-04-05',
+                    }
+                ],
+                total: 2,
+            }
+        }
+
+        return {
+            items: response.items.map((item) => ({
+                id: item.sys.id,
+                title: item.fields.title,
+                content: item.fields.content,
+                author: item.fields.author || '예인교회',
+                date: item.fields.date,
+            })),
+            total: response.total,
+        };
+    } catch (error) {
+        console.error('Error fetching notices:', error);
+        return { 
+            items: [
+                {
+                    id: 'mock-1',
+                    title: '구리 예인교회 홈페이지 새 단장 안내',
+                    content: '성도 여러분의 신앙생활에 도움을 드리고자 홈페이지를 새롭게 단장하였습니다. 많은 이용 바랍니다.',
+                    author: '관리자',
+                    date: '2026-03-01',
+                }
+            ], 
+            total: 1 
+        };
+    }
+}
+
+// 개별 공지사항 가져오기
+export async function getNoticeById(id) {
+    try {
+        // Handle mock IDs
+        if (id.startsWith('mock-')) {
+            const mockNotices = [
+                {
+                    id: 'mock-1',
+                    title: '구리 예인교회 홈페이지 새 단장 안내',
+                    content: '성도 여러분의 신앙생활에 도움을 드리고자 홈페이지를 새롭게 단장하였습니다. 많은 이용 바랍니다.',
+                    author: '관리자',
+                    date: '2026-03-01',
+                },
+                {
+                    id: 'mock-2',
+                    title: '금주 예배 안내',
+                    content: '이번 주 주일 예배는 평소와 동일하게 진행됩니다. 기도로 준비해 주시기 바랍니다.',
+                    author: '예인교회',
+                    date: '2026-04-05',
+                }
+            ];
+            return mockNotices.find(n => n.id === id) || null;
+        }
+
+        const entry = await client.getEntry(id);
+        return {
+            id: entry.sys.id,
+            title: entry.fields.title,
+            content: entry.fields.content,
+            author: entry.fields.author || '예인교회',
+            date: entry.fields.date,
+        };
+    } catch (error) {
+        console.error(`Error fetching notice ${id}:`, error);
+        return null;
+    }
+}
+
 export default client;

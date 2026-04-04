@@ -14,6 +14,8 @@ const menuItems = [
       { title: '섬기는 이', path: '/about/pastor' },
       { title: '연혁', path: '/about/history' },
       { title: '오시는길', path: '/about/location' },
+      { title: '공지사항', path: '/news/notice' },
+
     ],
   },
   {

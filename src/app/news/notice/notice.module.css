@@ -1,0 +1,238 @@
+/* 공지사항 페이지 스타일 */
+
+.noticeList {
+    background: white;
+    border-radius: 8px;
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+}
+
+.listHeader {
+    display: grid;
+    grid-template-columns: 80px 1fr 120px 140px;
+    padding: 16px 24px;
+    background: #f8f8f8;
+    border-bottom: 2px solid #eee;
+    font-weight: 600;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+.listItem {
+    display: grid;
+    grid-template-columns: 80px 1fr 120px 140px;
+    padding: 22px 24px;
+    border-bottom: 1px solid #f0f0f0;
+    align-items: center;
+    transition: var(--transition);
+    color: inherit;
+    text-decoration: none;
+}
+
+.listItem:hover {
+    background: #fdfdfd;
+    transform: translateY(-1px);
+    box-shadow: inset 0 -2px 0 var(--primary);
+}
+
+.listItem:last-child {
+    border-bottom: none;
+}
+
+.itemNumber {
+    font-weight: 600;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+.itemTitle {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding-right: 20px;
+}
+
+.itemMeta {
+    display: contents;
+}
+
+.itemAuthor {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+}
+
+.itemDate {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    text-align: right;
+}
+
+/* 게시글 내지 스타일 */
+.postDetail {
+    background: white;
+    border-radius: 12px;
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+    margin-bottom: 40px;
+}
+
+.postHeader {
+    padding: 40px;
+    border-bottom: 1px solid #eee;
+    background: #fafafa;
+}
+
+.postTitle {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 20px;
+    line-height: 1.4;
+    word-break: keep-all;
+}
+
+.postMeta {
+    display: flex;
+    gap: 24px;
+    color: var(--text-secondary);
+    font-size: 1rem;
+}
+
+.postBody {
+    padding: 40px;
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: #444;
+    min-height: 300px;
+    white-space: pre-wrap;
+}
+
+.postFooter {
+    padding: 30px 40px;
+    border-top: 1px solid #eee;
+    display: flex;
+    justify-content: center;
+}
+
+.backBtn {
+    background: var(--text-primary);
+    color: white;
+    border: none;
+    padding: 12px 40px;
+    border-radius: 30px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    text-decoration: none;
+}
+
+.backBtn:hover {
+    opacity: 0.9;
+}
+
+/* 빈 상태 */
+.empty {
+    text-align: center;
+    padding: 100px 20px;
+    color: var(--text-secondary);
+}
+
+.empty p {
+    font-size: 1.2rem;
+    margin-bottom: 12px;
+}
+
+.hint {
+    font-size: 0.95rem;
+    opacity: 0.7;
+}
+
+/* 페이지네이션 */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 50px;
+    padding: 20px 0;
+}
+
+.pageButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    height: 44px;
+    padding: 0 16px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    background: white;
+    color: var(--text-primary);
+    font-size: 1rem;
+    transition: var(--transition);
+    text-decoration: none;
+}
+
+.pageButton:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+.active {
+    background: var(--primary) !important;
+    color: white !important;
+    border-color: var(--primary) !important;
+}
+
+.disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* 반응형 */
+@media (max-width: 768px) {
+    .listHeader {
+        display: none;
+    }
+
+    .listItem {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        padding: 20px;
+    }
+
+    .itemNumber {
+        display: none;
+    }
+
+    .itemTitle {
+        font-size: 1.1rem;
+        white-space: normal;
+        padding-right: 0;
+    }
+
+    .itemMeta {
+        display: flex;
+        gap: 20px;
+        font-size: 0.9rem;
+    }
+
+    .itemAuthor,
+    .itemDate {
+        text-align: left;
+    }
+
+    .postHeader, .postBody, .postFooter {
+        padding: 25px;
+    }
+
+    .postTitle {
+        font-size: 1.5rem;
+    }
+}

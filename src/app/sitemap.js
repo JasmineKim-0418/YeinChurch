@@ -13,6 +13,7 @@ export default function sitemap() {
         '/branches',
         '/gallery',
         '/counseling',
+        '/news/notice',
         '/welcome',
     ].map((route) => ({
         url: `${baseUrl}${route}`,
