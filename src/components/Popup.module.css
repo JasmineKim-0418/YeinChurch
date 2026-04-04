@@ -1,18 +1,21 @@
 /* 팝업들이 담기는 컨테이너 - 왼쪽 정렬 */
 .popupsContainer {
     position: fixed;
-    top: 100px; /* 위로 조금 더 올림 */
+    top: 20px;
+    /* 위로 조금 더 올림 */
     left: 20px;
     z-index: 9999;
     display: flex;
-    flex-direction: row; /* 가로로 나열 */
+    flex-direction: row;
+    /* 가로로 나열 */
     justify-content: flex-start;
     align-items: flex-start;
     gap: 20px;
     pointer-events: none;
     width: auto;
     max-width: 95vw;
-    flex-wrap: wrap; /* 화면 좁으면 줄바꿈 */
+    flex-wrap: wrap;
+    /* 화면 좁으면 줄바꿈 */
 }
 
 .popup {
@@ -32,6 +35,7 @@
         opacity: 0;
         transform: translateY(-20px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -125,6 +129,7 @@
         right: 10px;
         align-items: center;
     }
+
     .popup {
         width: 100%;
         max-width: 350px;
