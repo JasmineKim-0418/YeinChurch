@@ -1,7 +1,7 @@
 /* 팝업들이 담기는 컨테이너 - 왼쪽 정렬 */
 .popupsContainer {
     position: fixed;
-    top: 15vh; /* 헤더보다 살짝 아래에서 시작 */
+    top: 100px; /* 위로 조금 더 올림 */
     left: 20px;
     z-index: 9999;
     display: flex;
