@@ -107,7 +107,23 @@
     line-height: 1.8;
     color: #444;
     min-height: 300px;
+}
+
+.postImageWrapper {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.postImage {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: var(--shadow-sm);
+}
+
+.postText {
     white-space: pre-wrap;
+    word-break: break-all;
 }
 
 .postFooter {

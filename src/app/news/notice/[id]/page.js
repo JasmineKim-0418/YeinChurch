@@ -52,7 +52,14 @@ export default async function NoticeDetailPage({ params }) {
                             </div>
                         </div>
                         <div className={styles.postBody}>
-                            {notice.content}
+                            {notice.image && (
+                                <div className={styles.postImageWrapper}>
+                                    <img src={notice.image} alt={notice.title} className={styles.postImage} />
+                                </div>
+                            )}
+                            <div className={styles.postText}>
+                                {notice.content}
+                            </div>
                         </div>
                         <div className={styles.postFooter}>
                             <Link href="/news/notice" className={styles.backBtn}>

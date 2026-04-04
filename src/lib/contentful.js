@@ -377,6 +377,7 @@ export async function getNotices(page = 1, limit = 15) {
                 id: item.sys.id,
                 title: item.fields.title,
                 content: item.fields.content,
+                image: item.fields.image?.fields?.file?.url ? `https:${item.fields.image.fields.file.url}` : null,
                 author: item.fields.author || '예인교회',
                 date: item.fields.date,
             })),
@@ -428,6 +429,7 @@ export async function getNoticeById(id) {
             id: entry.sys.id,
             title: entry.fields.title,
             content: entry.fields.content,
+            image: entry.fields.image?.fields?.file?.url ? `https:${entry.fields.image.fields.file.url}` : null,
             author: entry.fields.author || '예인교회',
             date: entry.fields.date,
         };
