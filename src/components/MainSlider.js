@@ -12,15 +12,21 @@ const banners = [
     },
     {
         id: 2,
+        image: '/New Life Evangelism Festival_desk_1.jpeg',
+        mobileImage: '/New Life Evangelism Festival_mobile_1.jpeg',
+        alt: '새생명 전도축제 1',
+    },
+    {
+        id: 3,
         image: '/main-banner-high-0.png',
         mobileImage: '/main-banner-mobile-5.png',
         alt: '2026년 표어: 말씀을 읽고, 묵상하고, 살아내자',
     },
     {
-        id: 3,
-        image: '/2026_pray_desk.png',
-        mobileImage: '/2026_pray_mobile.png',
-        alt: '2026 고난 주간 특별 새벽기도회',
+        id: 4,
+        image: '/New Life Evangelism Festival_desk_2.jpeg',
+        mobileImage: '/New Life Evangelism Festival_mobile_2.jpeg',
+        alt: '새생명 전도축제 2',
     },
 
     // {
