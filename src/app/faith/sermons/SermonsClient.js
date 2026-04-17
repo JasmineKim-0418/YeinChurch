@@ -11,6 +11,36 @@ function getYouTubeVideoId(url) {
     return match ? match[1] : null;
 }
 
+// 설교 제목 포맷팅 함수 (시리즈 번호와 본문 구분)
+function formatSermonTitle(title) {
+    if (!title) return '';
+    const firstOpenParen = title.indexOf('(');
+    if (firstOpenParen === -1) return title;
+
+    const secondOpenParen = title.indexOf('(', firstOpenParen + 1);
+    const firstPart = title.substring(firstOpenParen);
+
+    // 첫 번째 괄호가 숫자이면 두 번째 괄호에서 줄바꿈
+    if (secondOpenParen !== -1 && /^\(\d+\)/.test(firstPart)) {
+        return (
+            <>
+                {title.substring(0, secondOpenParen)}
+                <br />
+                {title.substring(secondOpenParen)}
+            </>
+        );
+    }
+
+    // 그 외에는 첫 번째 괄호에서 줄바꿈
+    return (
+        <>
+            {title.substring(0, firstOpenParen)}
+            <br />
+            {title.substring(firstOpenParen)}
+        </>
+    );
+}
+
 export default function SermonsClient({ initialSermons }) {
     const [selectedSermon, setSelectedSermon] = useState(initialSermons[0]);
     const [videoId, setVideoId] = useState(null);
@@ -77,15 +107,7 @@ export default function SermonsClient({ initialSermons }) {
                                 {selectedSermon.id === initialSermons[0].id ? '최신 설교' : '선택된 설교'}
                             </span>
                             <h2 className={styles.featuredTitle}>
-                                {selectedSermon.title.includes('(') ? (
-                                    <>
-                                        {selectedSermon.title.split('(')[0]}
-                                        <br />
-                                        ({selectedSermon.title.split('(').slice(1).join('(')}
-                                    </>
-                                ) : (
-                                    selectedSermon.title
-                                )}
+                                {formatSermonTitle(selectedSermon.title)}
                             </h2>
                             <p className={styles.featuredMeta}>
                                 {selectedSermon.date && new Date(selectedSermon.date).toLocaleDateString('ko-KR')} | {selectedSermon.preacher}
@@ -125,15 +147,7 @@ export default function SermonsClient({ initialSermons }) {
                                     >
                                         <span className={styles.colNum}>{sermonNumber}</span>
                                         <span className={styles.colTitle}>
-                                            {sermon.title.includes('(') ? (
-                                                <>
-                                                    {sermon.title.split('(')[0]}
-                                                    <br />
-                                                    ({sermon.title.split('(').slice(1).join('(')}
-                                                </>
-                                            ) : (
-                                                sermon.title
-                                            )}
+                                            {formatSermonTitle(sermon.title)}
                                         </span>
                                         <span className={styles.colPreacher}>{sermon.preacher}</span>
                                         <span className={styles.colDate}>

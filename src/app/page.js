@@ -126,15 +126,33 @@ export default async function Home() {
                       }).replace(/\. /g, '.').replace(/\.$/, '')}
                     </span>
                     <h3 className={styles.sermonTitle}>
-                      {sermon.title.includes('(') ? (
-                        <>
-                          {sermon.title.split('(')[0]}
-                          <br />
-                          ({sermon.title.split('(').slice(1).join('(')}
-                        </>
-                      ) : (
-                        sermon.title
-                      )}
+                      {(() => {
+                        const firstOpenParen = sermon.title.indexOf('(');
+                        if (firstOpenParen === -1) return sermon.title;
+
+                        const secondOpenParen = sermon.title.indexOf('(', firstOpenParen + 1);
+                        const firstPart = sermon.title.substring(firstOpenParen);
+                        
+                        // 첫 번째 괄호가 숫자이면 두 번째 괄호에서 줄바꿈
+                        if (secondOpenParen !== -1 && /^\(\d+\)/.test(firstPart)) {
+                          return (
+                            <>
+                              {sermon.title.substring(0, secondOpenParen)}
+                              <br />
+                              {sermon.title.substring(secondOpenParen)}
+                            </>
+                          );
+                        }
+
+                        // 그 외에는 첫 번째 괄호에서 줄바꿈
+                        return (
+                          <>
+                            {sermon.title.substring(0, firstOpenParen)}
+                            <br />
+                            {sermon.title.substring(firstOpenParen)}
+                          </>
+                        );
+                      })()}
                     </h3>
                     <p className={styles.sermonPreacher}>{sermon.preacher}</p>
                   </div>
