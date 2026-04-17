@@ -35,7 +35,7 @@ export default async function PraisePage() {
                     <div className={styles.introContent}>
                         <div className={styles.introImage}>
                             <img
-                                src="/sella.jpeg"
+                                src="/sella.png"
                                 alt="예인교회 찬양팀 모습"
                                 style={{
                                     width: '100%',
