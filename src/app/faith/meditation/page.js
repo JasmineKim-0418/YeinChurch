@@ -78,15 +78,30 @@ export default async function MeditationPage({ searchParams }) {
                                     </Link>
 
                                     {/* Page Numbers */}
-                                    {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNum) => (
-                                        <Link
-                                            key={pageNum}
-                                            href={`/faith/meditation?page=${pageNum}`}
-                                            className={`${styles.pageButton} ${currentPage === pageNum ? styles.active : ''}`}
-                                        >
-                                            {pageNum}
-                                        </Link>
-                                    ))}
+                                    {(() => {
+                                        const maxVisiblePages = 5;
+                                        let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+                                        let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+
+                                        if (endPage - startPage + 1 < maxVisiblePages) {
+                                            startPage = Math.max(1, endPage - maxVisiblePages + 1);
+                                        }
+
+                                        const pages = [];
+                                        for (let i = startPage; i <= endPage; i++) {
+                                            pages.push(i);
+                                        }
+
+                                        return pages.map((pageNum) => (
+                                            <Link
+                                                key={pageNum}
+                                                href={`/faith/meditation?page=${pageNum}`}
+                                                className={`${styles.pageButton} ${currentPage === pageNum ? styles.active : ''}`}
+                                            >
+                                                {pageNum}
+                                            </Link>
+                                        ));
+                                    })()}
 
                                     {/* Next Button */}
                                     <Link
