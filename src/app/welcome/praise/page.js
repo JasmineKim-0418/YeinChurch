@@ -41,9 +41,7 @@ export default async function PraisePage() {
                                     width: '100%',
                                     height: 'auto',
                                     borderRadius: '16px',
-                                    boxShadow: 'var(--shadow-lg)',
-                                    objectFit: 'cover',
-                                    aspectRatio: '4/3'
+                                    boxShadow: 'var(--shadow-lg)'
                                 }}
                             />
                         </div>
