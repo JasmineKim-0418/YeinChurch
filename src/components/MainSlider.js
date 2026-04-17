@@ -7,8 +7,8 @@ const banners = [
 
     {
         id: 1,
-        image: '/New Life Evangelism Festival_desk_1.jpeg',
-        mobileImage: '/New Life Evangelism Festival_mobile_1.jpeg',
+        image: '/new-life-festival-desk-1.jpeg',
+        mobileImage: '/new-life-festival-mobile-1.jpeg',
         alt: '새생명 전도축제 1',
     },
     {
@@ -19,8 +19,8 @@ const banners = [
     },
     {
         id: 3,
-        image: '/New Life Evangelism Festival_desk_2.jpeg',
-        mobileImage: '/New Life Evangelism Festival_mobile_2.jpeg',
+        image: '/new-life-festival-desk-2.jpeg',
+        mobileImage: '/new-life-festival-mobile-2.jpeg',
         alt: '새생명 전도축제 2',
     },
     {

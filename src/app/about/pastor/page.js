@@ -51,8 +51,8 @@ export default function PastorPage() {
                                 <h3 className={styles.coworkerName}>윤현영 전도사님</h3>
                                 <p className={styles.coworkerRole}>다음 세대 담당</p>
                                 <ul className={styles.coworkerBio}>
-                                    <li>동덕여자대학교</li>
-                                    <li>총신대학교 교육대학원</li>
+                                    <li>동덕여자대학교 아동학전공</li>
+                                    <li>총신대학교 교육대학원 유아교육전공</li>
                                 </ul>
                             </div>
                             <div className={styles.coworkerCard}>

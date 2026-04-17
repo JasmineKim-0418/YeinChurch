@@ -53,7 +53,7 @@ export default function EvangelismPage() {
                         <div className={styles.scheduleGrid}>
                             <div className={styles.scheduleItem}>
                                 <strong>정기 전도</strong>
-                                <p>첫째·셋째 토요일 오후 1시</p>
+                                <p>매월 둘째, 넷째주 오전 11시 ~ 오후 2시</p>
                             </div>
                             <div className={styles.scheduleItem}>
                                 <strong>모임 장소</strong>
