@@ -20,6 +20,22 @@ export default async function MeditationPage({ searchParams }) {
     // Calculate item numbers (descending)
     const getItemNumber = (index) => total - ((currentPage - 1) * ITEMS_PER_PAGE + index);
 
+    // Group meditations by month (maintaining descending order)
+    const groupedMeditations = [];
+    meditations.forEach((meditation, index) => {
+        if (!meditation.date) return;
+        const date = new Date(meditation.date);
+        const monthKey = `${date.getFullYear()}년 ${date.getMonth() + 1}월`;
+        
+        let group = groupedMeditations.find(g => g.monthKey === monthKey);
+        if (!group) {
+            group = { monthKey, items: [] };
+            groupedMeditations.push(group);
+        }
+        // Store the global index alongside the item to calculate the correct number
+        group.items.push({ ...meditation, globalIndex: index });
+    });
+
     return (
         <>
             <div className="page-header">
@@ -38,31 +54,41 @@ export default async function MeditationPage({ searchParams }) {
                         </div>
                     ) : (
                         <>
-                            <div className={styles.meditationList}>
-                                {/* Header */}
-                                <div className={styles.listHeader}>
-                                    <span>번호</span>
-                                    <span>제목</span>
-                                    <span>작성자</span>
-                                    <span style={{ textAlign: 'right' }}>날짜</span>
-                                </div>
+                            <div className={styles.groupedContainer}>
+                                {groupedMeditations.map((group, groupIndex) => (
+                                    <details key={group.monthKey} className={styles.monthGroup} open={groupIndex === 0}>
+                                        <summary className={styles.monthTitle}>
+                                            <h2>{group.monthKey}</h2>
+                                            <span className={styles.accordionIcon}></span>
+                                        </summary>
+                                        <div className={styles.meditationList}>
+                                            {/* Header */}
+                                            <div className={styles.listHeader}>
+                                                <span>번호</span>
+                                                <span>제목</span>
+                                                <span>작성자</span>
+                                                <span style={{ textAlign: 'right' }}>날짜</span>
+                                            </div>
 
-                                {/* Items */}
-                                {meditations.map((meditation, index) => (
-                                    <Link
-                                        href={`/faith/meditation/${meditation.id}`}
-                                        key={meditation.id}
-                                        className={styles.listItem}
-                                    >
-                                        <span className={styles.itemNumber}>{getItemNumber(index)}</span>
-                                        <span className={styles.itemTitle}>{meditation.title}</span>
-                                        <div className={styles.itemMeta}>
-                                            <span className={styles.itemAuthor}>{meditation.author}</span>
-                                            <span className={styles.itemDate}>
-                                                {meditation.date && new Date(meditation.date).toLocaleDateString('ko-KR')}
-                                            </span>
+                                            {/* Items */}
+                                            {group.items.map((meditation) => (
+                                                <Link
+                                                    href={`/faith/meditation/${meditation.id}`}
+                                                    key={meditation.id}
+                                                    className={styles.listItem}
+                                                >
+                                                    <span className={styles.itemNumber}>{getItemNumber(meditation.globalIndex)}</span>
+                                                    <span className={styles.itemTitle}>{meditation.title}</span>
+                                                    <div className={styles.itemMeta}>
+                                                        <span className={styles.itemAuthor}>{meditation.author}</span>
+                                                        <span className={styles.itemDate}>
+                                                            {new Date(meditation.date).toLocaleDateString('ko-KR')}
+                                                        </span>
+                                                    </div>
+                                                </Link>
+                                            ))}
                                         </div>
-                                    </Link>
+                                    </details>
                                 ))}
                             </div>
 
