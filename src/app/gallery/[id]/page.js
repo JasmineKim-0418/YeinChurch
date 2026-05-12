@@ -16,6 +16,15 @@ export async function generateMetadata({ params }) {
     return {
         title: `${item.title} - 예인교회 갤러리`,
         description: item.description || '예인교회의 다양한 활동 사진을 만나보세요.',
+        robots: {
+            index: false,
+            follow: false,
+            googleBot: {
+                index: false,
+                follow: false,
+                noimageindex: true,
+            },
+        },
     };
 }
 
@@ -61,6 +70,7 @@ export default async function GalleryDetailPage({ params }) {
                                                 src={img}
                                                 alt={`${item.title} - ${idx + 1}`}
                                                 className={styles.fullImage}
+                                                onContextMenu={(e) => e.preventDefault()}
                                             />
                                         </div>
                                     ))
@@ -70,6 +80,7 @@ export default async function GalleryDetailPage({ params }) {
                                             src={item.thumbnail}
                                             alt={item.title}
                                             className={styles.fullImage}
+                                            onContextMenu={(e) => e.preventDefault()}
                                         />
                                     </div>
                                 )}

@@ -17,7 +17,12 @@ export default function GalleryClient({ items }) {
                             <article className={styles.card}>
                                 <div className={styles.imageWrapper}>
                                     {item.thumbnail && (
-                                        <img src={item.thumbnail} alt={item.title} className={styles.thumbnail} />
+                                        <img 
+                                            src={item.thumbnail} 
+                                            alt={item.title} 
+                                            className={styles.thumbnail} 
+                                            onContextMenu={(e) => e.preventDefault()}
+                                        />
                                     )}
                                     <div className={styles.overlay}>
                                         <span>상세보기</span>

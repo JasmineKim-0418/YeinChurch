@@ -7,6 +7,15 @@ export const revalidate = 60;
 export const metadata = {
     title: '갤러리 - 예인교회',
     description: '예인교회의 다양한 활동 사진을 만나보세요.',
+    robots: {
+        index: false,
+        follow: false,
+        googleBot: {
+            index: false,
+            follow: false,
+            noimageindex: true,
+        },
+    },
 };
 
 export default async function GalleryPage() {
