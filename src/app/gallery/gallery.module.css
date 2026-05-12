@@ -26,6 +26,13 @@
     border-radius: 4px;
 }
 
+.imageWrapper::after {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: 10;
+}
+
 .thumbnail {
     width: 100%;
     height: 100%;
@@ -38,6 +45,7 @@
     -o-user-drag: none;
     user-select: none;
     -webkit-touch-callout: none;
+    pointer-events: none;
 }
 
 .overlay {
@@ -172,6 +180,14 @@
     border-radius: 8px;
     overflow: hidden;
     background: #f8f8f8;
+    position: relative;
+}
+
+.feedImageBox::after {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: 10;
 }
 
 .fullImage {
