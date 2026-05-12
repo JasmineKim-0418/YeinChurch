@@ -279,6 +279,100 @@ export async function getGalleryItems() {
     }
 }
 
+// 개별 갤러리 항목 가져오기
+export async function getGalleryItemById(id) {
+    try {
+        const entry = await client.getEntry(id);
+        
+        let imageUrls = [];
+
+        if (entry.fields.images) {
+            if (Array.isArray(entry.fields.images)) {
+                imageUrls = entry.fields.images.map(img =>
+                    img.fields?.file?.url ? `https:${img.fields.file.url}` : null
+                ).filter(Boolean);
+            } else {
+                const url = entry.fields.images.fields?.file?.url ? `https:${entry.fields.images.fields.file.url}` : null;
+                if (url) imageUrls = [url];
+            }
+        }
+
+        if (entry.fields.image) {
+            if (Array.isArray(entry.fields.image)) {
+                imageUrls.push(...entry.fields.image.map(img =>
+                    img.fields?.file?.url ? `https:${img.fields.file.url}` : null
+                ).filter(Boolean));
+            } else if (entry.fields.image.fields?.file?.url) {
+                imageUrls.push(`https:${entry.fields.image.fields.file.url}`);
+            }
+        }
+
+        return {
+            id: entry.sys.id,
+            title: entry.fields.title,
+            thumbnail: imageUrls.length > 0 ? imageUrls[0] : null,
+            images: imageUrls,
+            description: entry.fields.description,
+            date: entry.fields.date,
+        };
+    } catch (error) {
+        console.error(`Error fetching gallery item ${id}:`, error);
+        
+        // Mock fallback
+        const mockItems = [
+            {
+                id: '1',
+                title: '2026 부활절 예배',
+                thumbnail: '/main-banner-high-1.png',
+                images: ['/main-banner-high-1.png'],
+                description: '기쁨과 감사의 부활절 예배 현장입니다.',
+                date: '2026-04-12',
+            },
+            {
+                id: '2',
+                title: '성가대 특별 찬양',
+                thumbnail: '/choir_performance_1770166449704.png',
+                images: ['/choir_performance_1770166449704.png'],
+                description: '은혜로운 성가대의 찬양입니다.',
+                date: '2026-03-20',
+            },
+            {
+                id: '3',
+                title: '여름 수련회',
+                thumbnail: '/main-banner-2.png',
+                images: ['/main-banner-2.png'],
+                description: '자연 속에서 하나님을 만나는 시간',
+                date: '2025-08-15',
+            },
+            {
+                id: '4',
+                title: '성탄 발표회',
+                thumbnail: '/church-banner.png',
+                images: ['/church-banner.png'],
+                description: '아기 예수님의 탄생을 축하하며',
+                date: '2025-12-25',
+            },
+            {
+                id: '5',
+                title: '새가족 환영회',
+                thumbnail: '/main-banner-welcome.png',
+                images: ['/main-banner-welcome.png'],
+                description: '새로운 가족이 되신 여러분 환영합니다',
+                date: '2026-01-10',
+            },
+            {
+                id: '6',
+                title: '담임목사님 설교',
+                thumbnail: '/pastor-photo.png',
+                images: ['/pastor-photo.png'],
+                description: '매주 선포되는 생명의 말씀',
+                date: '2026-02-01',
+            },
+        ];
+        return mockItems.find(item => item.id === id) || null;
+    }
+}
+
 // 활성화된 모든 팝업 가져오기
 export async function getActivePopups() {
     try {
