@@ -70,7 +70,6 @@ export default async function GalleryDetailPage({ params }) {
                                                 src={img}
                                                 alt={`${item.title} - ${idx + 1}`}
                                                 className={styles.fullImage}
-                                                onContextMenu={(e) => e.preventDefault()}
                                             />
                                         </div>
                                     ))
@@ -80,7 +79,6 @@ export default async function GalleryDetailPage({ params }) {
                                             src={item.thumbnail}
                                             alt={item.title}
                                             className={styles.fullImage}
-                                            onContextMenu={(e) => e.preventDefault()}
                                         />
                                     </div>
                                 )}

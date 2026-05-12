@@ -37,6 +37,7 @@
     -moz-user-drag: none;
     -o-user-drag: none;
     user-select: none;
+    -webkit-touch-callout: none;
 }
 
 .overlay {
@@ -183,6 +184,8 @@
     -moz-user-drag: none;
     -o-user-drag: none;
     user-select: none;
+    -webkit-touch-callout: none;
+    pointer-events: none;
 }
 
 .pagination {
