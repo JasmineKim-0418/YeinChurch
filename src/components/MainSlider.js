@@ -7,24 +7,12 @@ const banners = [
 
     {
         id: 1,
-        image: '/new-life-festival-desk-1.jpeg',
-        mobileImage: '/new-life-festival-mobile-1.jpeg',
-        alt: '새생명 전도축제 1',
-    },
-    {
-        id: 2,
         image: '/main-banner-high-3.png',
         mobileImage: '/main-banner-mobile-3.png',
         alt: '예인교회에 오신 여러분을 진심으로 환영합니다',
     },
     {
-        id: 3,
-        image: '/new-life-festival-desk-2.jpeg',
-        mobileImage: '/new-life-festival-mobile-2.jpeg',
-        alt: '새생명 전도축제 2',
-    },
-    {
-        id: 4,
+        id: 2,
         image: '/main-banner-high-0.png',
         mobileImage: '/main-banner-mobile-5.png',
         alt: '2026년 표어: 말씀을 읽고, 묵상하고, 살아내자',
