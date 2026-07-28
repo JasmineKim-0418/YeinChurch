@@ -167,7 +167,7 @@ export default function SermonsClient({ initialSermons }) {
                                 className={`${styles.pageButton} ${currentPage === 1 ? styles.disabled : ''}`}
                                 disabled={currentPage === 1}
                             >
-                                ←
+                                ← 이전
                             </button>
 
                             {(() => {
@@ -200,7 +200,7 @@ export default function SermonsClient({ initialSermons }) {
                                 className={`${styles.pageButton} ${currentPage === totalPages ? styles.disabled : ''}`}
                                 disabled={currentPage === totalPages}
                             >
-                                →
+                                다음 →
                             </button>
                         </div>
                     )}
