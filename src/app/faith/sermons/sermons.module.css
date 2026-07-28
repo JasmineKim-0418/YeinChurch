@@ -207,8 +207,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 8px;
-    margin-top: 40px;
+    gap: 10px;
+    margin-top: 50px;
     padding: 20px 0;
 }
 
@@ -216,14 +216,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    min-width: 40px;
-    height: 40px;
-    padding: 0 12px;
-    border-radius: 4px;
+    min-width: 44px;
+    height: 44px;
+    padding: 0 16px;
+    border-radius: 6px;
     border: 1px solid #ddd;
     background: white;
     color: var(--text-primary);
-    font-size: 0.95rem;
+    font-size: 1rem;
     transition: var(--transition);
     cursor: pointer;
 }
