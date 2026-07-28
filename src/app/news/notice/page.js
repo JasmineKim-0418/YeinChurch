@@ -75,7 +75,8 @@ export default async function NoticePage({ searchParams }) {
                                         aria-disabled={currentPage === 1}
                                         className={`${styles.pageButton} ${currentPage === 1 ? styles.disabled : ''}`}
                                     >
-                                        ← 이전
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                                        <span>이전</span>
                                     </Link>
 
                                     {/* Page Numbers */}
@@ -110,7 +111,8 @@ export default async function NoticePage({ searchParams }) {
                                         aria-disabled={currentPage === totalPages}
                                         className={`${styles.pageButton} ${currentPage === totalPages ? styles.disabled : ''}`}
                                     >
-                                        다음 →
+                                        <span>다음</span>
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                                     </Link>
                                 </div>
                             )}

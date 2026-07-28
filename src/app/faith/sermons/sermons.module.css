@@ -213,9 +213,10 @@
 }
 
 .pageButton {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
+    gap: 6px;
     min-width: 44px;
     height: 44px;
     padding: 0 16px;
@@ -223,7 +224,9 @@
     border: 1px solid #ddd;
     background: white;
     color: var(--text-primary);
+    font-family: inherit;
     font-size: 1rem;
+    line-height: 1;
     transition: var(--transition);
     cursor: pointer;
 }
