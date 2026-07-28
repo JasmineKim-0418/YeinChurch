@@ -74,7 +74,10 @@ export default async function ColumnPage({ searchParams }) {
                                         href={currentPage > 1 ? `/faith/column?page=${currentPage - 1}` : '#'}
                                         className={`${styles.pageButton} ${currentPage === 1 ? styles.disabled : ''}`}
                                     >
-                                        ← 이전
+                                        <span style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+                                            <span>&larr;</span>
+                                            <span>이전</span>
+                                        </span>
                                     </Link>
 
                                     {/* Page Numbers */}
@@ -108,7 +111,10 @@ export default async function ColumnPage({ searchParams }) {
                                         href={currentPage < totalPages ? `/faith/column?page=${currentPage + 1}` : '#'}
                                         className={`${styles.pageButton} ${currentPage === totalPages ? styles.disabled : ''}`}
                                     >
-                                        다음 →
+                                        <span style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+                                            <span>다음</span>
+                                            <span>&rarr;</span>
+                                        </span>
                                     </Link>
                                 </div>
                             )}

@@ -167,7 +167,10 @@ export default function SermonsClient({ initialSermons }) {
                                 className={`${styles.pageButton} ${currentPage === 1 ? styles.disabled : ''}`}
                                 disabled={currentPage === 1}
                             >
-                                ← 이전
+                                <span style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+                                    <span>&larr;</span>
+                                    <span>이전</span>
+                                </span>
                             </button>
 
                             {(() => {
@@ -200,7 +203,10 @@ export default function SermonsClient({ initialSermons }) {
                                 className={`${styles.pageButton} ${currentPage === totalPages ? styles.disabled : ''}`}
                                 disabled={currentPage === totalPages}
                             >
-                                다음 →
+                                <span style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+                                    <span>다음</span>
+                                    <span>&rarr;</span>
+                                </span>
                             </button>
                         </div>
                     )}
