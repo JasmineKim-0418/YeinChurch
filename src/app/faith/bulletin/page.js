@@ -71,53 +71,47 @@ export default async function BulletinPage({ searchParams }) {
                             {/* Pagination */}
                             {totalPages > 1 && (
                                 <div className={styles.pagination}>
-                                    {/* Previous Button */}
-                                    <Link
-                                        href={currentPage > 1 ? `/faith/bulletin?page=${currentPage - 1}` : '#'}
-                                        className={`${styles.pageButton} ${currentPage === 1 ? styles.disabled : ''}`}
-                                    >
-                                        <span style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
-                                            <span>&larr;</span>
-                                            <span>이전</span>
-                                        </span>
-                                    </Link>
+                                     {/* Previous Button */}
+                                     <Link
+                                         href={currentPage > 1 ? `/faith/bulletin?page=${currentPage - 1}` : '#'}
+                                         className={`${styles.pageButton} ${currentPage === 1 ? styles.disabled : ''}`}
+                                     >
+                                         ← 이전
+                                     </Link>
 
-                                    {/* Page Numbers */}
-                                    {(() => {
-                                        const maxVisiblePages = 5;
-                                        let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
-                                        let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+                                     {/* Page Numbers */}
+                                     {(() => {
+                                         const maxVisiblePages = 5;
+                                         let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+                                         let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
 
-                                        if (endPage - startPage + 1 < maxVisiblePages) {
-                                            startPage = Math.max(1, endPage - maxVisiblePages + 1);
-                                        }
+                                         if (endPage - startPage + 1 < maxVisiblePages) {
+                                             startPage = Math.max(1, endPage - maxVisiblePages + 1);
+                                         }
 
-                                        const pages = [];
-                                        for (let i = startPage; i <= endPage; i++) {
-                                            pages.push(i);
-                                        }
+                                         const pages = [];
+                                         for (let i = startPage; i <= endPage; i++) {
+                                             pages.push(i);
+                                         }
 
-                                        return pages.map((pageNum) => (
-                                            <Link
-                                                key={pageNum}
-                                                href={`/faith/bulletin?page=${pageNum}`}
-                                                className={`${styles.pageButton} ${currentPage === pageNum ? styles.active : ''}`}
-                                            >
-                                                {pageNum}
-                                            </Link>
-                                        ));
-                                    })()}
+                                         return pages.map((pageNum) => (
+                                             <Link
+                                                 key={pageNum}
+                                                 href={`/faith/bulletin?page=${pageNum}`}
+                                                 className={`${styles.pageButton} ${currentPage === pageNum ? styles.active : ''}`}
+                                             >
+                                                 {pageNum}
+                                             </Link>
+                                         ));
+                                     })()}
 
-                                    {/* Next Button */}
-                                    <Link
-                                        href={currentPage < totalPages ? `/faith/bulletin?page=${currentPage + 1}` : '#'}
-                                        className={`${styles.pageButton} ${currentPage === totalPages ? styles.disabled : ''}`}
-                                    >
-                                        <span style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
-                                            <span>다음</span>
-                                            <span>&rarr;</span>
-                                        </span>
-                                    </Link>
+                                     {/* Next Button */}
+                                     <Link
+                                         href={currentPage < totalPages ? `/faith/bulletin?page=${currentPage + 1}` : '#'}
+                                         className={`${styles.pageButton} ${currentPage === totalPages ? styles.disabled : ''}`}
+                                     >
+                                         다음 →
+                                     </Link>
                                 </div>
                             )}
                         </>
