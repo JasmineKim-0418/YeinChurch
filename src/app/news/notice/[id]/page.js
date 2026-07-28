@@ -2,8 +2,48 @@ import { getNoticeById } from '@/lib/contentful';
 import styles from '../notice.module.css';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
+import { BLOCKS, INLINES } from '@contentful/rich-text-types';
 
 export const revalidate = 60;
+
+const richTextOptions = {
+    renderNode: {
+        [BLOCKS.EMBEDDED_ASSET]: (node) => {
+            const url = node.data?.target?.fields?.file?.url;
+            const title = node.data?.target?.fields?.title || '공지사항 이미지';
+            if (url) {
+                const imageUrl = url.startsWith('//') ? `https:${url}` : url;
+                return (
+                    <div className={styles.postImageWrapper}>
+                        <img
+                            src={imageUrl}
+                            alt={title}
+                            className={styles.postImage}
+                        />
+                    </div>
+                );
+            }
+            return null;
+        },
+        [INLINES.EMBEDDED_ASSET]: (node) => {
+            const url = node.data?.target?.fields?.file?.url;
+            const title = node.data?.target?.fields?.title || '공지사항 이미지';
+            if (url) {
+                const imageUrl = url.startsWith('//') ? `https:${url}` : url;
+                return (
+                    <img
+                        src={imageUrl}
+                        alt={title}
+                        className={styles.postImage}
+                        style={{ display: 'inline-block' }}
+                    />
+                );
+            }
+            return null;
+        },
+    },
+};
 
 export async function generateMetadata({ params }) {
     const p = await params;
@@ -15,9 +55,13 @@ export async function generateMetadata({ params }) {
         };
     }
 
+    const description = typeof notice.content === 'string'
+        ? notice.content.substring(0, 150)
+        : notice.title;
+
     return {
         title: `${notice.title} - 공지사항 | 예인교회`,
-        description: notice.content?.substring(0, 150) || '',
+        description,
     };
 }
 
@@ -28,6 +72,8 @@ export default async function NoticeDetailPage({ params }) {
     if (!notice) {
         return notFound();
     }
+
+    const hasImages = notice.images && notice.images.length > 0;
 
     return (
         <>
@@ -52,13 +98,24 @@ export default async function NoticeDetailPage({ params }) {
                             </div>
                         </div>
                         <div className={styles.postBody}>
-                            {notice.image && (
+                            {hasImages ? (
+                                <div className={styles.postImageWrapper} style={{ display: 'flex', flexDirection: 'column', gap: '20px', alignItems: 'center' }}>
+                                    {notice.images.map((imgUrl, idx) => (
+                                        <img key={idx} src={imgUrl} alt={`${notice.title} ${idx + 1}`} className={styles.postImage} />
+                                    ))}
+                                </div>
+                            ) : notice.image ? (
                                 <div className={styles.postImageWrapper}>
                                     <img src={notice.image} alt={notice.title} className={styles.postImage} />
                                 </div>
-                            )}
+                            ) : null}
+
                             <div className={styles.postText}>
-                                {notice.content}
+                                {typeof notice.content === 'string' ? (
+                                    <div style={{ whiteSpace: 'pre-wrap', wordBreak: 'break-all' }}>{notice.content}</div>
+                                ) : notice.content && typeof notice.content === 'object' ? (
+                                    documentToReactComponents(notice.content, richTextOptions)
+                                ) : null}
                             </div>
                         </div>
                         <div className={styles.postFooter}>

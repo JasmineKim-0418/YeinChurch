@@ -435,6 +435,45 @@ export async function getPraisePraises() {
     }
 }
 
+// 이미지 URL 추출 헬퍼 함수 (단일/다중 파일 및 다양한 필드명 지원)
+export function extractImageUrls(fields) {
+    if (!fields) return [];
+    
+    const possibleFieldNames = [
+        'image', 'images', 'file', 'files', 'photo', 'photos', 
+        'picture', 'pictures', 'attachment', 'attachments', 
+        'media', 'thumbnail', 'cover'
+    ];
+    
+    const urls = [];
+
+    const processAsset = (asset) => {
+        if (!asset) return;
+        if (typeof asset === 'string') {
+            const cleanUrl = asset.startsWith('//') ? `https:${asset}` : asset;
+            if (!urls.includes(cleanUrl)) urls.push(cleanUrl);
+            return;
+        }
+        if (Array.isArray(asset)) {
+            asset.forEach(processAsset);
+            return;
+        }
+        const fileUrl = asset.fields?.file?.url || asset.fields?.url || asset.file?.url || asset.url;
+        if (fileUrl && typeof fileUrl === 'string') {
+            const cleanUrl = fileUrl.startsWith('//') ? `https:${fileUrl}` : fileUrl;
+            if (!urls.includes(cleanUrl)) urls.push(cleanUrl);
+        }
+    };
+
+    for (const fieldName of possibleFieldNames) {
+        if (fields[fieldName]) {
+            processAsset(fields[fieldName]);
+        }
+    }
+
+    return urls;
+}
+
 // 공지사항 목록 가져오기 (페이징 지원)
 export async function getNotices(page = 1, limit = 15) {
     try {
@@ -469,14 +508,20 @@ export async function getNotices(page = 1, limit = 15) {
         }
 
         return {
-            items: response.items.map((item) => ({
-                id: item.sys.id,
-                title: item.fields.title,
-                content: item.fields.content,
-                image: item.fields.image?.fields?.file?.url ? `https:${item.fields.image.fields.file.url}` : null,
-                author: item.fields.author || '예인교회',
-                date: item.fields.date,
-            })),
+            items: response.items.map((item) => {
+                const imageUrls = extractImageUrls(item.fields);
+                return {
+                    id: item.sys.id,
+                    title: item.fields.title || '제목 없음',
+                    content: item.fields.content || item.fields.body || item.fields.description || '',
+                    image: imageUrls.length > 0 ? imageUrls[0] : null,
+                    images: imageUrls,
+                    author: typeof item.fields.author === 'string'
+                        ? item.fields.author
+                        : (item.fields.author?.fields?.name || item.fields.author2 || '예인교회'),
+                    date: item.fields.date || '',
+                };
+            }),
             total: response.total,
         };
     } catch (error) {
@@ -521,13 +566,18 @@ export async function getNoticeById(id) {
         }
 
         const entry = await client.getEntry(id);
+        const imageUrls = extractImageUrls(entry.fields);
+
         return {
             id: entry.sys.id,
-            title: entry.fields.title,
-            content: entry.fields.content,
-            image: entry.fields.image?.fields?.file?.url ? `https:${entry.fields.image.fields.file.url}` : null,
-            author: entry.fields.author || '예인교회',
-            date: entry.fields.date,
+            title: entry.fields.title || '제목 없음',
+            content: entry.fields.content || entry.fields.body || entry.fields.description || '',
+            image: imageUrls.length > 0 ? imageUrls[0] : null,
+            images: imageUrls,
+            author: typeof entry.fields.author === 'string' 
+                ? entry.fields.author 
+                : (entry.fields.author?.fields?.name || entry.fields.author2 || '예인교회'),
+            date: entry.fields.date || '',
         };
     } catch (error) {
         console.error(`Error fetching notice ${id}:`, error);
